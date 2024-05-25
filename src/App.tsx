@@ -1,4 +1,7 @@
 import { useState, useEffect, useTransition, lazy} from "react";
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import Signup from './components/Signup';
+import FindPW from './components/FindPW';
 import './css/StartPage.css';
 import logo from './assets/logo_main.svg';
 import LogIn from './components/Login';
@@ -15,20 +18,36 @@ function App() {
 
   return (
     <>
-      <div style={{display: "flex", justifyContent: "center", alignItems: "center", height:"100vh", backgroundColor:"#E2E9F0"}}>
-        {
-          showForm ? (
-            <LogIn/>
-          ) : (
-            <div>
-              <TitleContainer/>
-              <button className="start-button" onClick={handleButtonClick}>시작하기</button>
-              <img src={logo} alt="로고 출력 실패" style={{width: "30vw", height: "30vh", position:"absolute", top:"200px", right:"10%"}}/>
-            </div>
-          )
-        }
-        <TitleRectangle/>
-      </div>
+      <Routes>
+        <Route path="/" element={
+          <div style={{display: "flex", justifyContent: "center", alignItems: "center", height:"100vh", backgroundColor:"#E2E9F0"}}>
+            {
+            showForm ? (
+                <LogIn/>
+              ) : (
+                <div>
+                  <TitleContainer/>
+                  <button className="start-button" onClick={handleButtonClick}>시작하기</button>
+                  <img src={logo} alt="로고 출력 실패" style={{width: "30vw", height: "30vh", position:"absolute", top:"200px", right:"10%"}}/>
+                </div>
+              )
+            }
+            <TitleRectangle/>
+          </div>
+        }/>
+        <Route path="signup" element={
+          <div style={{display: "flex", justifyContent: "center", alignItems: "center", height:"100vh", backgroundColor:"#E2E9F0"}}>
+            <Signup/>
+            <TitleRectangle/>
+          </div>
+        }/>
+        <Route path="findPW" element={
+          <div style={{display: "flex", justifyContent: "center", alignItems: "center", height:"100vh", backgroundColor:"#E2E9F0"}}>
+            <FindPW/>
+            <TitleRectangle/>
+          </div>
+        }/>
+      </Routes>
     </>
   );
 }
