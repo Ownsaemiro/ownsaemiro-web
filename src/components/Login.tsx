@@ -4,27 +4,27 @@ import '../css/StartPage.css';
 import logo from '../assets/logo_login.svg';
 
 function LogIn() {
-  const [isSeller, setIsSeller] = useState(true);
+  const [isSeller, setIsSeller] = useState(false);
   const [isManager, setIsManager] = useState(false);
   const [saveID, setSaveID] = useState("");
   const [savePW, setSavePW] = useState("");
 
   const navigate = useNavigate();
 
-  const handleLogin = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLogin = (event: React.FormEvent) => {
     event.preventDefault();
     // 여기에 실제 로그인 로직 추가 (API 호출 등)
     if (isSeller) { // 판매자 로그인
       if (saveID === "1234" && savePW === "1234") {
         alert("판매자 로그인 성공");
-        navigate('/mainpage');
+        navigate('/mainpage', { state: { loginType: 'seller' } });
       } else {
         alert("아이디 또는 비밀번호가 올바르지 않습니다.");
       }
     } else if (isManager) { // 관리자 로그인
       if (saveID === "managerID" && savePW === "managerPW") {
         alert("관리자 로그인 성공");
-        // navigate('/mainpage');
+        navigate('/mainpage', { state: { loginType: 'manager' } });
       } else {
         alert("아이디 또는 비밀번호가 올바르지 않습니다.");
       }
@@ -44,7 +44,7 @@ function LogIn() {
               className={`type-select ${isSeller ? 'seller-active' : ''}`}
               style={{marginBottom:"5px"}}
               onClick={() => {
-                setIsSeller(!isSeller);
+                setIsSeller(true);
                 setIsManager(false);
                 setSaveID("");
                 setSavePW("");
@@ -57,7 +57,7 @@ function LogIn() {
             <button
               className={`type-select ${isManager ? 'seller-active' : ''}`}
               onClick={() => {
-                setIsManager(!isManager);
+                setIsManager(true);
                 setIsSeller(false);
                 setSaveID("");
                 setSavePW("");
