@@ -1,10 +1,12 @@
-import { useState, useEffect, useTransition, lazy} from "react";
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Routes, Route } from 'react-router-dom';
 import Signup from './components/Signup';
 import FindPW from './components/FindPW';
+import LogIn from './components/Login';
+import MainPage from './components/MainPage';
 import './css/StartPage.css';
 import logo from './assets/logo_main.svg';
-import LogIn from './components/Login';
+
 // Vite는 참조할 때 절대경로로 입력해야함
 // 환경변수 : VITE_API_KEY = ''로 사용
 // npm run-script dev
@@ -35,17 +37,20 @@ function App() {
             <TitleRectangle/>
           </div>
         }/>
-        <Route path="signup" element={
+        <Route path="/signup" element={
           <div style={{display: "flex", justifyContent: "center", alignItems: "center", height:"100vh", backgroundColor:"#E2E9F0"}}>
             <Signup/>
             <TitleRectangle/>
           </div>
         }/>
-        <Route path="findPW" element={
+        <Route path="/findPW" element={
           <div style={{display: "flex", justifyContent: "center", alignItems: "center", height:"100vh", backgroundColor:"#E2E9F0"}}>
             <FindPW/>
             <TitleRectangle/>
           </div>
+        }/>
+        <Route path="/mainpage" element={
+          <MainPage/>
         }/>
       </Routes>
     </>

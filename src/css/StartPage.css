@@ -100,11 +100,12 @@
 
   color: #999;
   font-weight: bold;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 .type-select:hover {
   background-color: #f0f0f0;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 .type-select.seller-active {
@@ -141,7 +142,7 @@
 
 /* 회원가입, 비밀번호 찾기 버튼 */
 .signup {
-  width: 110px;
+  width: 115px;
   height: 30px;
   background-color: transparent;
   border: 0px;
