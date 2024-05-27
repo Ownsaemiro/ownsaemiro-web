@@ -93,7 +93,9 @@ function EventRequestList() {
   const handleOpen = (item: (typeof sampleData)[0]) => {
     console.log("Opening modal for item:", item);
     setSelectedItem(item);
+    console.log(selectedItem)
     setOpen(true);
+    console.log(open);
   };
 
   const handleClose = () => {
@@ -158,7 +160,7 @@ function EventRequestList() {
           {filteredData.map((item) => (
             <tr
               key={item.id}
-              onClick={() => handleOpen(item)}
+              onClick={() => {handleOpen(item)}}
               style={{ cursor: "pointer" }}
             >
               <td>
@@ -193,6 +195,13 @@ function EventRequestList() {
         <button>10</button>
         <button>&gt;</button>
       </div>
+      {open && selectedItem && (
+        <EventModal
+          open={open}
+          handleClose={handleClose}
+          item={selectedItem}
+        />
+      )}
     </main>
   );
 }
