@@ -37,11 +37,11 @@ function LogIn() {
     <div className="login">
       <div>
         <div style={{display:"flex"}}>
-          <img src={logo} alt="로고 출력 실패" style={{alignSelf:"flex-start", marginBottom:"30px", color:"#576FD7"}}/>
-          <div style={{ marginLeft: "auto", marginTop:"5px"}}>
+          <img src={logo} alt="로고 출력 실패" style={{marginBottom:"30px", color:"#576FD7"}}/>
+          <div style={{ marginLeft: "auto", marginTop:"10px"}}>
             {/* 판매자 선택 버튼 */}
             <button
-              className={`type-select ${isSeller ? 'seller-active' : ''}`}
+              className={`type-select ${isSeller ? 'select-active' : ''}`}
               style={{marginBottom:"5px"}}
               onClick={() => {
                 setIsSeller(true);
@@ -55,7 +55,7 @@ function LogIn() {
 
             {/* 관리자 선택 버튼 */}
             <button
-              className={`type-select ${isManager ? 'seller-active' : ''}`}
+              className={`type-select ${isManager ? 'select-active' : ''}`}
               onClick={() => {
                 setIsManager(true);
                 setIsSeller(false);
@@ -71,22 +71,22 @@ function LogIn() {
         {/* ID, PW 입력 Form */}
         <form onSubmit={handleLogin}>
           <div>
-            <div style={{color: "#999"}}>아이디</div>
+            <div className="label">아이디</div>
             <input type="text" name="ID" className="login-text" value={saveID}
               onChange={(e)=>{ setSaveID(e.target.value); }}/>
           </div>
           <div style={{ marginTop: "25px" }}>
-            <div style={{color: "#999"}}>비밀번호</div>
+            <div className="label">비밀번호</div>
             <input type="password" name="PW" className="login-text" value={savePW}
               onChange={(e)=>{ setSavePW(e.target.value); }}/>
           </div>
           <p><input type="submit" value="로그인" className="login-button" /></p>
         </form>
 
-        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-          <button className="signup right-align" onClick={()=>{navigate('/signup')}}>회원가입</button> 
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop:"20px"}}>
+          <button className="signup-button right-align" onClick={()=>{navigate('/signup')}}>회원가입</button> 
           |
-          <button className="signup left-align" onClick={()=>{navigate('/findPW')}}>비밀번호 찾기</button> 
+          <button className="signup-button left-align" onClick={()=>{navigate('/findPW')}}>비밀번호 찾기</button> 
         </div>
       </div>
     </div>
