@@ -1,27 +1,6 @@
-/* 시작화면 기본 세팅 */
-.title-container {
-  display: grid;
-  align-items: center;
-  position: absolute;
-  top: 200px;
-  left: 15%;
-  z-index: 5;
-}
-
-
-/* 시작화면 이름 글자 기본값 */
-.title {
-  font-weight: bold;
-  color: #555;
-}
-
-
 /* 시작버튼 */
 .start-button {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 10%;
+  margin-bottom: 100px;
   z-index: 10;
 
   width: 180px;
@@ -38,39 +17,9 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .start-button:hover {
   background-color: #357ab8;
   border: 2px solid #357ab8;
-}
-
-/* 왼쪽 아래에서 오른쪽 위로 올라가는 도형 */
-.title-rectangle13 {
-  position: absolute;
-  left: -180px;
-  bottom: 0px;
-
-  width: 95vw;
-  height: 25vh;
-  border-radius: 100px;
-
-  background: linear-gradient(90deg, rgba(87, 111, 215, 30%), #576FD7);
-  transform: rotate(-5deg);
-}
-
-/* 왼쪽 위에서 오른쪽 아래로 내려가는 도형 */
-.title-rectangle24 {
-  position: absolute;
-  left: 50px;
-  bottom: 0px;
-  z-index: 0;
-
-  width: 90vw;
-  height: 23vh;
-  border-radius: 100px;
-
-  background: linear-gradient(90deg, #677DDD, #2240AA);
-  transform: rotate(20.74deg);
 }
 
 /* 아이디 입력창 기본 세팅 */
@@ -81,8 +30,7 @@
   justify-content: center;
   z-index: 10;
 
-  width: 550px;
-  height: 410px;
+  padding: 40px 60px;
   background-color: white;
   border-radius: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
@@ -90,8 +38,7 @@
 
 /* 판매자, 관리자 선택 버튼 */
 .type-select {
-  width: 130px;
-  height: 25px;
+  padding: 5px 25px;
 
   background-color: transparent;
   border: 0px;
@@ -108,7 +55,7 @@
   transition: background-color 0.5s, color 0.5s;
 }
 
-.type-select.seller-active {
+.type-select.select-active {
   background-color: #f0f0f0;
   color: #576FD7;
 }
@@ -121,7 +68,8 @@
   font-size: 17px;
   color: #555;
   width: 400px;
-  padding: 3px 5px 3px 5px;
+  height: 30px;
+    padding: 5px 8px;
 
   outline-color: #576FD7;
 }
@@ -133,15 +81,21 @@
   background-color: #576FD7;
 
   font-size: 22px;
+  font-weight: bold;
   color: white;
   border-radius: 5px;
   border: 0px solid #FFF;
 
   margin-top: 15px;
+  cursor: pointer;
+  }
+  
+  .login-button:hover {
+    font-weight: bold;
 }
 
 /* 회원가입, 비밀번호 찾기 버튼 */
-.signup {
+.signup-button {
   width: 115px;
   height: 30px;
   background-color: transparent;
@@ -154,7 +108,7 @@
   align-items: center;
 }
 
-.signup:hover {
+.signup-button:hover {
   color: #576FD7;
   transition: background-color 0.3s, color 0.3s;
 }
