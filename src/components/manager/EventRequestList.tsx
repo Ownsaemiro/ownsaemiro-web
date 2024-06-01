@@ -1,88 +1,14 @@
 import React, { useState } from "react";
 import "../../css/MainPage.css";
-import EventModal from "./EventModal";
-
-const sampleData = [
-  {
-    id: 1,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 대기",
-  },
-  {
-    id: 2,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 거절",
-  },
-  {
-    id: 3,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 허가",
-  },
-  {
-    id: 4,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 허가",
-  },
-  {
-    id: 5,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 거절",
-  },
-  {
-    id: 6,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 대기",
-  },
-  {
-    id: 7,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 대기",
-  },
-  {
-    id: 8,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 대기",
-  },
-];
+import EventModal from "./Modal/EventModal";
+import { RequestData } from "./Data/RequestData";
 
 function EventRequestList() {
-  const [data, setData] = useState(sampleData);
+  const [data, setData] = useState(RequestData);
   const [selectedStatus, setSelectedStatus] = useState("전체");
   const [open, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<
-    (typeof sampleData)[0] | null
+    (typeof RequestData)[0] | null
   >(null);
 
   const filteredData =
@@ -90,7 +16,7 @@ function EventRequestList() {
       ? data
       : data.filter((item) => item.status === selectedStatus);
 
-  const handleOpen = (item: (typeof sampleData)[0]) => {
+  const handleOpen = (item: (typeof RequestData)[0]) => {
     console.log("Opening modal for item:", item);
     setSelectedItem(item);
     console.log(selectedItem)

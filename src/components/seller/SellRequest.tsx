@@ -1,82 +1,10 @@
 import React, { useState } from "react";
 import plus from "../../assets/logo_plus.svg";
 import "../../css/MainPage.css";
-
-const sampleData = [
-  {
-    id: 1,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 대기",
-    seatstatus: "112",
-  },
-  {
-    id: 2,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 대기",
-    seatstatus: "54",
-  },
-  {
-    id: 3,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 완료",
-    seatstatus: "400",
-  },
-  {
-    id: 4,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 거절",
-    seatstatus: "200",
-  },
-  {
-    id: 5,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 완료",
-    seatstatus: "400",
-  },
-  {
-    id: 6,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 완료",
-    seatstatus: "400",
-  },
-  {
-    id: 7,
-    applicant: "핫소스",
-    username: "hotsss",
-    eventName: "핫소스유니버스탑업스토어",
-    requestDate: "2024-04-20",
-    eventDate: "2024-05-10~12",
-    status: "승인 완료",
-    seatstatus: "400",
-  },
-];
+import { SellHistoryData } from "./Data/SellHistoryData";
 
 function SellRequest() {
-  const [data, setData] = useState(sampleData);
+  const [data, setData] = useState(SellHistoryData);
   const [selectedStatus, setSelectedStatus] = useState("전체");
 
   const filteredData =

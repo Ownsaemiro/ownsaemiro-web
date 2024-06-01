@@ -11,7 +11,7 @@ import sellreq from "..//assets/logo_sellreq.svg";
 import EventRequestList from "./manager/EventRequestList";
 import BannedUserList from "./manager/BannedUserList";
 import ReportedUserList from "./manager/ReportedUserList";
-import EventModal from "./manager/EventModal";
+import EventModal from "./manager/Modal/EventModal";
 import SelledHistory from "./seller/SelledHistory";
 import SellRequest from "./seller/SellRequest";
 

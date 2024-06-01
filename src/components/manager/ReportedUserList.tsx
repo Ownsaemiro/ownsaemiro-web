@@ -1,74 +1,9 @@
 import React, { useState } from "react";
 import "../../css/MainPage.css";
-
-const sampleReportedUserData = [
-  {
-    id: 1,
-    applicant: "핫소스",
-    username: "hotsss",
-    reportID: "asd123",
-    reportDate: "2024-04-20",
-    reportReason:
-      "신고 내용 블랑브라링바바비이라리릴라라이라리릴라라이라리릴라라이라리릴라라ㅣ리",
-  },
-  {
-    id: 2,
-    applicant: "핫소스",
-    username: "hotsss",
-    reportID: "asd123",
-    reportDate: "2024-04-20",
-    reportReason:
-      "신고 내용 블랑브라링바바비이라리릴라라이라리릴라라이라리릴라라이라리릴라라ㅣ리",
-  },
-  {
-    id: 3,
-    applicant: "핫소스",
-    username: "hotsss",
-    reportID: "asd123",
-    reportDate: "2024-04-20",
-    reportReason:
-      "신고 내용 블랑브라링바바비이라리릴라라이라리릴라라이라리릴라라이라리릴라라ㅣ리",
-  },
-  {
-    id: 4,
-    applicant: "핫소스",
-    username: "hotsss",
-    reportID: "asd123",
-    reportDate: "2024-04-20",
-    reportReason:
-      "신고 내용 블랑브라링바바비이라리릴라라이라리릴라라이라리릴라라이라리릴라라ㅣ리",
-  },
-  {
-    id: 5,
-    applicant: "핫소스",
-    username: "hotsss",
-    reportID: "asd123",
-    reportDate: "2024-04-20",
-    reportReason:
-      "신고 내용 블랑브라링바바비이라리릴라라이라리릴라라이라리릴라라이라리릴라라ㅣ리",
-  },
-  {
-    id: 6,
-    applicant: "핫소스",
-    username: "hotsss",
-    reportID: "asd123",
-    reportDate: "2024-04-20",
-    reportReason:
-      "신고 내용 블랑브라링바바비이라리릴라라이라리릴라라이라리릴라라이라리릴라라ㅣ리",
-  },
-  {
-    id: 7,
-    applicant: "핫소스",
-    username: "hotsss",
-    reportID: "asd123",
-    reportDate: "2024-04-20",
-    reportReason:
-      "신고 내용 블랑브라링바바비이라리릴라라이라리릴라라이라리릴라라이라리릴라라ㅣ리",
-  },
-];
+import { ReportUserData } from "./Data/ReportingUserData";
 
 function ReportedUserList() {
-  const [data, setData] = useState(sampleReportedUserData);
+  const [data, setData] = useState(ReportUserData);
 
   return (
     <main className="main-content">
