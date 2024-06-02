@@ -94,13 +94,16 @@ body {
 .logout-button:hover {
   background-color: #98A9F0;
 }
-
+.filter-table-header{
+  display:flex;
+  justify-content: space-between;
+}
 .filter {
-  display: inline-flex;
-  width: auto;
+  display: flex;
+  width: 60%;
   border: 2px solid #E5E5E5;
   border-radius: 10px;
-
+  align-items: center;
   background-color: #F8FCFF;
   justify-content: flex-start;
   margin-bottom: 25px;
@@ -154,6 +157,26 @@ button {
   color: #EB5A5A;
 }
 
+.stanby {
+  color:#999999;
+}
+
+.selled {
+  color: #999999;
+}
+
+.selling {
+  color: #67a238;
+}
+
+.beforesell {
+  color: #576fd7;
+}
+
+.selldeny {
+  color: #EB5A5A;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -174,4 +197,38 @@ button {
 
 .pagination button:hover {
   color: #576FD7;
+}
+
+.table-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.table-header .btn {
+  width:112px;
+  height:36px;
+  margin-top: 114px;
+  margin-left: 10px;
+  padding: 10px 0;
+  border : none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.table-header .btn.approve {
+  background-color: #576fd7;
+  color: white;
+}
+
+.table-header .btn.reject {
+  background-color: white;
+  color: #7e7e7e;
+  border: 1px solid #576fd7; /* 추가된 border */
+  opacity: 1; /* opacity 조정 */
 }

@@ -105,7 +105,7 @@ function Signup(){
       </div>
       <form className="form">
         {/* 이름 */}
-        <div className="label">이름</div>
+        <div className="label-PW">이름</div>
         <input
           className="signup-text"
           style={{width:"240px"}}
@@ -116,7 +116,7 @@ function Signup(){
         />
 
         {/* 이메일 */}
-        <div className="label">이메일</div>
+        <div className="label-PW">이메일</div>
         <div style={{display:"flex"}}>
           <input
             className="signup-text"
@@ -137,7 +137,7 @@ function Signup(){
         }
 
         {/* 아이디 */}
-        <div className="label">아이디</div>
+        <div className="label-PW">아이디</div>
         <div style={{display:"flex"}}>
           <input
             className="signup-text"

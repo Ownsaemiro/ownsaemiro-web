@@ -50,7 +50,7 @@ function FindPW(){
       </div>
 
       <form className="form">
-        <div className="label">이름</div>
+        <div className="label-PW">이름</div>
         <div style={{display:"flex"}}>
           <input
             className="signup-text"
@@ -61,7 +61,7 @@ function FindPW(){
           />
         </div>
 
-        <div className="label">아이디</div>
+        <div className="label-PW">아이디</div>
         <input
           className="signup-text"
           type="PW"
