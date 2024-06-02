@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 import styled from "styled-components";
+import Button from 'react-bootstrap/Button';
 
 import Signup from './components/Signup';
 import FindPW from './components/FindPW';
@@ -17,10 +18,6 @@ import logo from './assets/logo_main.svg';
 function App() {
   const [showForm, setShowForm] = useState(false);
 
-  const handleButtonClick = () => {
-    setShowForm(true); // 버튼 클릭 시 상태를 업데이트
-  };
-
   return (
     <>
       <Routes>
@@ -36,7 +33,7 @@ function App() {
                   <TitleContainer/>
                   <img src={logo} alt="로고 출력 실패" style={{width: "25vw", height: "25vh", position:"absolute", top:"200px", right:"10%", zIndex:"10"}}/>
                   
-                  <button className="start-button" onClick={handleButtonClick}>시작하기</button>
+                  <button className="start-button" onClick={()=>{setShowForm(true);}}>시작하기</button>
                 </div>
               )
             }
