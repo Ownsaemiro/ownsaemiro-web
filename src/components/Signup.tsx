@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styled from "styled-components";
+
 import '../css/Signup.css';
 import logo from '../assets/logo_login.svg'
 import check from '../assets/logo_check.svg';
@@ -13,35 +16,63 @@ function Signup(){
 
   const [name, setName] = useState(''); // 이름 저장
   const [email, setEmail] = useState(''); // 이메일 저장
-  const [ID, setID] = useState(''); // ID 저장
-  const [PW, setPW] = useState(''); // PW 저장
-  const [confirmPW, setConfirmPW] = useState(''); // PW 일치 저장
+  const [saveID, setSaveID] = useState(''); // saveID 저장
+  const [savePW, setSavePW] = useState(''); // savePW 저장
+  const [confirmPW, setConfirmPW] = useState(''); // savePW 일치 저장
   
   /* 이메일 인증을 위한 useState */
   const [isEmailCheck, setIsEmailVerified] = useState<boolean | null>(null); // 처음에는 인증 상태가 없기 때문에 null로 설정
-  /* ID 중복 체크를 위한 useState */
+  /* saveID 중복 체크를 위한 useState */
   const [isIDCheck, setIsIdUnique] = useState<boolean | null>(null); // 처음에는 인증 상태가 없기 때문에 null로 설정
-  /* PW 일치 체크를 위한 useState */
+  /* savePW 일치 체크를 위한 useState */
   const [isPWCheck, setIsPWCheck] = useState<boolean | null>(null);
 
+  const navigate = useNavigate();
+
   const handleEmailVerification = () => {
-    // Logic for email verification
+    // GET : 서버로부터 데이터 가져오기
+    // POST : 서버로 데이터 보내기
 
     setIsEmailVerified(true);
+    // axios.post("http://api/auth/sign-in", {
+    //   ID: saveID,
+    //   PW: savePW
+    // })
+    // .then((res)=>{
+    //     console.log(res);
+    // })
+    // .catch((e)=>{
+    //   alert(e);
+    // })
   };
 
   const handleIDCheck = () => {
-    // Logic for ID uniqueness check
-    
     setIsIdUnique(true);
+    // axios.get(`https://api/auth/check?serial_id=${saveID}`)
+    // .then((res)=>{
+    //   // res.data를 이용한 중복되는 아이디 체크 기능 추가
+    // })
+    // .catch((e)=>{
+    //   alert(e);
+    // })
   };
 
   const handleSubmit = () => {
-    // Logic for form submission
-    if (isEmailCheck && isIDCheck && PW === confirmPW) {
-      // console.log('Form submitted');
+    if (isEmailCheck && isIDCheck && savePW === confirmPW) {
+      // axios.post("http://api/auth/sign-up", {
+      //   ID: saveID,
+      //   PW: savePW
+      // })
+      // .then((res)=>{
+      //     console.log(res);
+      // })
+      // .catch((e)=>{
+      //   alert(e);
+      // })
+      alert("회원가입 완료되었습니다.\n\n로그인 해주세요.");
+      navigate('/');
     } else {
-      // console.log('Form validation failed');
+      alert("Form validation failed");
     }
   };
 
@@ -56,8 +87,8 @@ function Signup(){
 
             setName("");
             setEmail("");
-            setID("");
-            setPW("");
+            setSaveID("");
+            setSavePW("");
             setConfirmPW("");
           }}>판매자</button>
         <button className={`tablinks ${isManagerSignup ? 'tab-active':''}`}
@@ -67,8 +98,8 @@ function Signup(){
 
             setName("");
             setEmail("");
-            setID("");
-            setPW("");
+            setSaveID("");
+            setSavePW("");
             setConfirmPW("");
           }}>관리자</button>
       </div>
@@ -113,8 +144,8 @@ function Signup(){
             style={{width:"240px"}}
             type="text"
             placeholder="사용할 아이디를 입력해주세요."
-            value={ID}
-            onChange={(e) => setID(e.target.value)}
+            value={saveID}
+            onChange={(e) => setSaveID(e.target.value)}
           />
           <button type="button" className="signup-check" onClick={handleIDCheck}>중복확인</button>
         </div>
@@ -133,19 +164,19 @@ function Signup(){
         }
 
         {/* 비밀번호 */}
-        <div className="label-PW">비밀번호</div>
+        <div className="label">비밀번호</div>
         <input
           className="signup-text"
           style={{width:"320px", marginBottom:"10px"}}
-          type="PW"
+          type="savePW"
           placeholder="영문+숫자 조합 8자리 이상 입력해주세요."
-          value={PW}
-          onChange={(e) => setPW(e.target.value)}
+          value={savePW}
+          onChange={(e) => setSavePW(e.target.value)}
         />
         <input
           className="signup-text"
           style={{width:"320px"}}
-          type="PW"
+          type="savePW"
           placeholder="비밀번호 확인"
           value={confirmPW}
           onChange={
@@ -156,14 +187,14 @@ function Signup(){
           }
         />
         {
-          (PW !== confirmPW) && isPWCheck !== null ?
+          (savePW !== confirmPW) && isPWCheck !== null ?
           <div className="error">
             <img src={error} alt="체크 출력 실패" style={{marginRight:"5px"}}/>
             <div>비밀번호를 다시 입력해주세요.</div>
           </div> : <div/>
         }
       </form>
-      <button type="button" className="signup-end" onClick={handleSubmit} disabled={!isEmailCheck || !isIDCheck || PW !== confirmPW}>시작하기</button>
+      <button type="button" className="signup-end" onClick={handleSubmit} disabled={!isEmailCheck || !isIDCheck || savePW !== confirmPW}>시작하기</button>
     </div>
   );
 }
