@@ -1,10 +1,8 @@
 import { useState } from "react";
-<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-=======
->>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
 import styled from "styled-components";
+
 import '../css/Signup.css';
 import logo from '../assets/logo_login.svg'
 import check from '../assets/logo_check.svg';
@@ -18,7 +16,6 @@ function Signup(){
 
   const [name, setName] = useState(''); // 이름 저장
   const [email, setEmail] = useState(''); // 이메일 저장
-<<<<<<< HEAD
   const [saveID, setSaveID] = useState(''); // saveID 저장
   const [savePW, setSavePW] = useState(''); // savePW 저장
   const [confirmPW, setConfirmPW] = useState(''); // savePW 일치 저장
@@ -76,37 +73,6 @@ function Signup(){
       navigate('/');
     } else {
       alert("Form validation failed");
-=======
-  const [ID, setID] = useState(''); // ID 저장
-  const [PW, setPW] = useState(''); // PW 저장
-  const [confirmPW, setConfirmPW] = useState(''); // PW 일치 저장
-  
-  /* 이메일 인증을 위한 useState */
-  const [isEmailCheck, setIsEmailVerified] = useState<boolean | null>(null); // 처음에는 인증 상태가 없기 때문에 null로 설정
-  /* ID 중복 체크를 위한 useState */
-  const [isIDCheck, setIsIdUnique] = useState<boolean | null>(null); // 처음에는 인증 상태가 없기 때문에 null로 설정
-  /* PW 일치 체크를 위한 useState */
-  const [isPWCheck, setIsPWCheck] = useState<boolean | null>(null);
-
-  const handleEmailVerification = () => {
-    // Logic for email verification
-
-    setIsEmailVerified(true);
-  };
-
-  const handleIDCheck = () => {
-    // Logic for ID uniqueness check
-    
-    setIsIdUnique(true);
-  };
-
-  const handleSubmit = () => {
-    // Logic for form submission
-    if (isEmailCheck && isIDCheck && PW === confirmPW) {
-      // console.log('Form submitted');
-    } else {
-      // console.log('Form validation failed');
->>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
     }
   };
 
@@ -121,13 +87,8 @@ function Signup(){
 
             setName("");
             setEmail("");
-<<<<<<< HEAD
             setSaveID("");
             setSavePW("");
-=======
-            setID("");
-            setPW("");
->>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
             setConfirmPW("");
           }}>판매자</button>
         <button className={`tablinks ${isManagerSignup ? 'tab-active':''}`}
@@ -137,13 +98,8 @@ function Signup(){
 
             setName("");
             setEmail("");
-<<<<<<< HEAD
             setSaveID("");
             setSavePW("");
-=======
-            setID("");
-            setPW("");
->>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
             setConfirmPW("");
           }}>관리자</button>
       </div>
@@ -188,13 +144,8 @@ function Signup(){
             style={{width:"240px"}}
             type="text"
             placeholder="사용할 아이디를 입력해주세요."
-<<<<<<< HEAD
             value={saveID}
             onChange={(e) => setSaveID(e.target.value)}
-=======
-            value={ID}
-            onChange={(e) => setID(e.target.value)}
->>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
           />
           <button type="button" className="signup-check" onClick={handleIDCheck}>중복확인</button>
         </div>
@@ -217,26 +168,15 @@ function Signup(){
         <input
           className="signup-text"
           style={{width:"320px", marginBottom:"10px"}}
-<<<<<<< HEAD
           type="savePW"
           placeholder="영문+숫자 조합 8자리 이상 입력해주세요."
           value={savePW}
           onChange={(e) => setSavePW(e.target.value)}
-=======
-          type="PW"
-          placeholder="영문+숫자 조합 8자리 이상 입력해주세요."
-          value={PW}
-          onChange={(e) => setPW(e.target.value)}
->>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
         />
         <input
           className="signup-text"
           style={{width:"320px"}}
-<<<<<<< HEAD
           type="savePW"
-=======
-          type="PW"
->>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
           placeholder="비밀번호 확인"
           value={confirmPW}
           onChange={
@@ -247,22 +187,14 @@ function Signup(){
           }
         />
         {
-<<<<<<< HEAD
           (savePW !== confirmPW) && isPWCheck !== null ?
-=======
-          (PW !== confirmPW) && isPWCheck !== null ?
->>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
           <div className="error">
             <img src={error} alt="체크 출력 실패" style={{marginRight:"5px"}}/>
             <div>비밀번호를 다시 입력해주세요.</div>
           </div> : <div/>
         }
       </form>
-<<<<<<< HEAD
       <button type="button" className="signup-end" onClick={handleSubmit} disabled={!isEmailCheck || !isIDCheck || savePW !== confirmPW}>시작하기</button>
-=======
-      <button type="button" className="signup-end" onClick={handleSubmit} disabled={!isEmailCheck || !isIDCheck || PW !== confirmPW}>시작하기</button>
->>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
     </div>
   );
 }

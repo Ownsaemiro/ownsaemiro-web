@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // import Button from 'react-bootstrap/Button';
@@ -13,10 +13,6 @@ function LogIn() {
   const [PW, setPW] = useState("");
 
   const navigate = useNavigate();
-
-  useEffect(()=>{
-
-  });
 
   const handleLogin = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -57,7 +53,7 @@ function LogIn() {
         alert("아이디 또는 비밀번호가 올바르지 않습니다.");
       }
     }
-  };
+  }
 
   return (
     <div className="login">
@@ -94,13 +90,13 @@ function LogIn() {
         <form onSubmit={handleLogin}>
           <div>
             <div style={{color: "#999"}}>아이디</div>
-            <input type="text" name="ID" className="login-text" value={saveID}
-              onChange={(e)=>{ setSaveID(e.target.value); }}/>
+            <input type="text" name="ID" className="login-text" value={ID}
+              onChange={(e)=>{ setID(e.target.value); }}/>
           </div>
           <div style={{ marginTop: "25px" }}>
             <div style={{color: "#999"}}>비밀번호</div>
-            <input type="password" name="PW" className="login-text" value={savePW}
-              onChange={(e)=>{ setSavePW(e.target.value); }}/>
+            <input type="password" name="PW" className="login-text" value={PW}
+              onChange={(e)=>{ setPW(e.target.value); }}/>
           </div>
           <p><input type="submit" value="로그인" className="login-button" /></p>
         </form>
