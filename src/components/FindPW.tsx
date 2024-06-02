@@ -1,5 +1,8 @@
 import { useState } from "react";
+<<<<<<< HEAD
 import axios from 'axios';
+=======
+>>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
 import '../css/Signup.css';
 import logo from '../assets/logo_login.svg'
 import error from '../assets/logo_error.svg';
@@ -17,6 +20,7 @@ function FindPW(){
 
   const handleSubmit = () => {
     setIsIDError(true);
+<<<<<<< HEAD
     // axios.get(`https://api/auth/findPW`)
     // .then((res)=>{
     //   // res.data를 이용한 비밀번호 찾기 기능 추가
@@ -24,6 +28,8 @@ function FindPW(){
     // .catch((e)=>{
     //   alert(e);
     // })
+=======
+>>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
   };
 
   return (

@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 import styled from "styled-components";
+<<<<<<< HEAD
 import Button from 'react-bootstrap/Button';
+=======
+>>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
 
 import Signup from './components/Signup';
 import FindPW from './components/FindPW';
@@ -33,7 +36,11 @@ function App() {
                   <TitleContainer/>
                   <img src={logo} alt="로고 출력 실패" style={{width: "25vw", height: "25vh", position:"absolute", top:"200px", right:"10%", zIndex:"10"}}/>
                   
+<<<<<<< HEAD
                   <button className="start-button" onClick={()=>{setShowForm(true);}}>시작하기</button>
+=======
+                  <button className="start-button" onClick={handleButtonClick}>시작하기</button>
+>>>>>>> 5bf602717bd37264d72085cc8eb697fbf353cc86
                 </div>
               )
             }
