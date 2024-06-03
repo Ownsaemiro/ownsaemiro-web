@@ -50,10 +50,10 @@ function FindPW(){
       </div>
 
       <form className="form">
-        <div className="label-PW">이름</div>
+        <div className="login-label">이름</div>
         <div style={{display:"flex"}}>
           <input
-            className="signup-text"
+            className="login-text"
             type="text"
             placeholder="이름(실명)을 입력해주세요."
             value={name}
@@ -61,9 +61,9 @@ function FindPW(){
           />
         </div>
 
-        <div className="label-PW">아이디</div>
+        <div className="login-label">아이디</div>
         <input
-          className="signup-text"
+          className="login-text"
           type="PW"
           placeholder="사용할 아이디를 입력해주세요."
           value={ID}
@@ -73,7 +73,7 @@ function FindPW(){
           isIDError ?
           <div className="error">
             <img src={error} alt="체크 출력 실패" style={{marginRight:"5px"}}/>
-            <div>비밀번호를 다시 입력해주세요.</div>
+            <div>존재하지 않는 아이디입니다.</div>
           </div> : <div/>
         }
       </form>

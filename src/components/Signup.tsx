@@ -105,9 +105,9 @@ function Signup(){
       </div>
       <form className="form">
         {/* 이름 */}
-        <div className="label-PW">이름</div>
+        <div className="login-label">이름</div>
         <input
-          className="signup-text"
+          className="login-text"
           style={{width:"240px"}}
           type="text"
           placeholder="이름(실명)을 입력해주세요."
@@ -116,10 +116,10 @@ function Signup(){
         />
 
         {/* 이메일 */}
-        <div className="label-PW">이메일</div>
+        <div className="login-label">이메일</div>
         <div style={{display:"flex"}}>
           <input
-            className="signup-text"
+            className="login-text"
             style={{width:"320px"}}
             type="email"
             placeholder="이메일을 입력해주세요."
@@ -137,10 +137,10 @@ function Signup(){
         }
 
         {/* 아이디 */}
-        <div className="label-PW">아이디</div>
+        <div className="login-label">아이디</div>
         <div style={{display:"flex"}}>
           <input
-            className="signup-text"
+            className="login-text"
             style={{width:"240px"}}
             type="text"
             placeholder="사용할 아이디를 입력해주세요."
@@ -164,19 +164,19 @@ function Signup(){
         }
 
         {/* 비밀번호 */}
-        <div className="label">비밀번호</div>
+        <div className="login-label">비밀번호</div>
         <input
-          className="signup-text"
+          className="login-text"
           style={{width:"320px", marginBottom:"10px"}}
-          type="savePW"
+          type="password"
           placeholder="영문+숫자 조합 8자리 이상 입력해주세요."
           value={savePW}
           onChange={(e) => setSavePW(e.target.value)}
         />
         <input
-          className="signup-text"
+          className="login-text"
           style={{width:"320px"}}
-          type="savePW"
+          type="password"
           placeholder="비밀번호 확인"
           value={confirmPW}
           onChange={
@@ -191,6 +191,11 @@ function Signup(){
           <div className="error">
             <img src={error} alt="체크 출력 실패" style={{marginRight:"5px"}}/>
             <div>비밀번호를 다시 입력해주세요.</div>
+          </div> : 
+          (savePW === confirmPW) && isPWCheck !== null ?
+          <div className="check">
+            <img src={check} alt="체크 출력 실패" style={{marginRight:"5px"}}/>
+            <div>비밀번호가 일치합니다.</div>
           </div> : <div/>
         }
       </form>

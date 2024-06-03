@@ -7,14 +7,14 @@ import '../css/StartPage.css';
 import logo from '../assets/logo_login.svg';
 
 function LogIn() {
-  const [isSeller, setIsSeller] = useState(false);
+  const [isSeller, setIsSeller] = useState(true);
   const [isManager, setIsManager] = useState(false);
   const [ID, setID] = useState("");
   const [PW, setPW] = useState("");
 
   const navigate = useNavigate();
 
-  const handleLogin = (event: React.FormEvent) => {
+  const handleLogin = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     // GET : 서버로부터 데이터 가져오기
     // POST : 서버로 데이터 보내기
@@ -41,18 +41,34 @@ function LogIn() {
     if (isSeller) { // 판매자 로그인
       if (ID === "1234" && PW === "1234") {
         alert("판매자 로그인 성공");
-        navigate('/mainpage', { state: { loginType: 'seller' } });
+        navigate('/mainpage');
       } else {
         alert("아이디 또는 비밀번호가 올바르지 않습니다.");
       }
     } else if (isManager) { // 관리자 로그인
       if (ID === "managerID" && PW === "managerPW") {
         alert("관리자 로그인 성공");
-        navigate('/mainpage', { state: { loginType: 'manager' } });
+        // navigate('/mainpage');
       } else {
         alert("아이디 또는 비밀번호가 올바르지 않습니다.");
       }
     }
+
+    // if (isSeller) { // 판매자 로그인
+    //   if (ID === "1234" && PW === "1234") {
+    //     alert("판매자 로그인 성공");
+    //     navigate('/mainpage', { state: { loginType: 'seller' } });
+    //   } else {
+    //     alert("아이디 또는 비밀번호가 올바르지 않습니다.");
+    //   }
+    // } else if (isManager) { // 관리자 로그인
+    //   if (ID === "managerID" && PW === "managerPW") {
+    //     alert("관리자 로그인 성공");
+    //     navigate('/mainpage', { state: { loginType: 'manager' } });
+    //   } else {
+    //     alert("아이디 또는 비밀번호가 올바르지 않습니다.");
+    //   }
+    // }
   }
 
   return (
@@ -66,7 +82,7 @@ function LogIn() {
               className={`type-select ${isSeller ? 'select-active' : ''}`}
               style={{marginBottom:"5px"}}
               onClick={() => {
-                setIsSeller(true);
+                setIsSeller(!isSeller);
                 setIsManager(false);
                 setID("");
                 setPW("");
@@ -77,7 +93,7 @@ function LogIn() {
             <button
               className={`type-select ${isManager ? 'select-active' : ''}`}
               onClick={() => {
-                setIsManager(true);
+                setIsManager(!isManager);
                 setIsSeller(false);
                 setID("");
                 setPW("");
@@ -89,14 +105,14 @@ function LogIn() {
         {/* ID, PW 입력 Form */}
         <form onSubmit={handleLogin}>
           <div>
-            <div className="label-PW">아이디</div>
-            <input type="text" name="ID" className="login-text" value={saveID}
-              onChange={(e)=>{ setSaveID(e.target.value); }}/>
+            <div style={{color: "#999"}}>아이디</div>
+            <input type="text" name="ID" className="login-text" value={ID}
+              onChange={(e)=>{ setID(e.target.value); }}/>
           </div>
           <div style={{ marginTop: "25px" }}>
-            <div className="label-PW">비밀번호</div>
-            <input type="password" name="PW" className="login-text" value={savePW}
-              onChange={(e)=>{ setSavePW(e.target.value); }}/>
+            <div style={{color: "#999"}}>비밀번호</div>
+            <input type="password" name="PW" className="login-text" value={PW}
+              onChange={(e)=>{ setPW(e.target.value); }}/>
           </div>
           <p><input type="submit" value="로그인" className="login-button" /></p>
         </form>
