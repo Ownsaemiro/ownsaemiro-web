@@ -86,7 +86,7 @@ const EventModal: React.FC<EventModalProps> = ({ open, handleClose, item }) => {
           </label>
           <div className="text-display-fit">{item.eventPlanner}</div>
           <label htmlFor="eventNumberr" className="label">
-           대표자 전화번호
+            대표자 전화번호
           </label>
           <div className="text-display-fit">{item.eventNumber}</div>
           <label htmlFor="eventAge" className="label">
@@ -100,8 +100,7 @@ const EventModal: React.FC<EventModalProps> = ({ open, handleClose, item }) => {
           </label>
           <div className="text-display-explain">{item.eventExplain}</div>
         </div>
-        
-      
+
         <Box sx={{ mt: 2, display: "flex", justifyContent: "flex-end" }}>
           <Button variant="contained" onClick={handleClose} sx={{ mr: 1 }}>
             승인

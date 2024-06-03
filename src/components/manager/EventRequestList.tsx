@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/MainPage.css";
 import EventModal from "./Modal/EventModal";
 import { RequestData } from "./Data/RequestData";
@@ -11,17 +11,14 @@ function EventRequestList() {
     (typeof RequestData)[0] | null
   >(null);
 
-  const filteredData =
-    selectedStatus === "전체"
-      ? data
-      : data.filter((item) => item.status === selectedStatus);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 7;
+  const [selectAll, setSelectAll] = useState(false);
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   const handleOpen = (item: (typeof RequestData)[0]) => {
-    console.log("Opening modal for item:", item);
     setSelectedItem(item);
-    console.log(selectedItem)
     setOpen(true);
-    console.log(open);
   };
 
   const handleClose = () => {
@@ -29,8 +26,85 @@ function EventRequestList() {
     setSelectedItem(null);
   };
 
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    setSelectAll(false); // 페이지 변경 시 selectAll 상태 초기화
+  };
+
+  // 필터링된 데이터를 매번 계산
+  const filteredData =
+    selectedStatus === "전체"
+      ? data
+      : data.filter((item) => item.status === selectedStatus);
+
+  // 페이지 변경 시 currentItems를 업데이트
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedStatus]);
+
+  useEffect(() => {
+    if (selectAll) {
+      const newSelectedItems = [
+        ...new Set([
+          ...selectedItems,
+          ...currentItems.map((item) => item.id)
+        ])
+      ];
+      setSelectedItems(newSelectedItems);
+    } else {
+      const newSelectedItems = selectedItems.filter(
+        (id) => !currentItems.some((item) => item.id === id)
+      );
+      setSelectedItems(newSelectedItems);
+    }
+  }, [selectAll, currentPage, filteredData]);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  const startPage = Math.max(
+    1,
+    Math.min(currentPage - Math.floor(10 / 2), totalPages - 9)
+  );
+  const endPage = Math.min(totalPages, startPage + 9);
+
+  const handleSelectAll = () => {
+    setSelectAll(!selectAll);
+  };
+
+  const handleSelectItem = (id: number) => {
+    if (selectedItems.includes(id)) {
+      setSelectedItems(selectedItems.filter((itemId) => itemId !== id));
+    } else {
+      setSelectedItems([...selectedItems, id]);
+    }
+  };
+
+  const handleApprove = () => {
+    const newData = data.map((item) =>
+      selectedItems.includes(item.id) ? { ...item, status: "승인 허가" } : item
+    );
+    setData(newData);
+    setSelectedItems([]);
+    setSelectAll(false);
+  };
+
+  const handleReject = () => {
+    const newData = data.map((item) =>
+      selectedItems.includes(item.id) ? { ...item, status: "승인 거절" } : item
+    );
+    setData(newData);
+    setSelectedItems([]);
+    setSelectAll(false);
+  };
+
   return (
-    <main className="main-content">
+    <main
+      key={`${selectedStatus}-${currentPage}`}
+      className="main-content"
+    >
       <h1 style={{ color: "#555" }}>행사 등록 요청 목록</h1>
       <div className="filter-table-header">
         <div className="filter">
@@ -64,15 +138,19 @@ function EventRequestList() {
           </div>
         </div>
         <div className="table-header">
-          <button className="btn approve">승인</button>
-          <button className="btn reject">승인 거절</button>
+          <button className="btn approve" onClick={handleApprove}>승인</button>
+          <button className="btn reject" onClick={handleReject}>승인 거절</button>
         </div>
       </div>
       <table style={{ borderRadius: "5px" }}>
         <thead>
           <tr>
             <th>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={selectAll}
+                onChange={handleSelectAll}
+              />
             </th>
             <th>신청자명</th>
             <th>아이디</th>
@@ -83,14 +161,18 @@ function EventRequestList() {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((item) => (
+          {currentItems.map((item) => (
             <tr
               key={item.id}
-              onClick={() => {handleOpen(item)}}
+              onClick={() => handleOpen(item)}
               style={{ cursor: "pointer" }}
             >
-              <td>
-                <input type="checkbox" />
+              <td onClick={(e) => e.stopPropagation()}>
+                <input
+                  type="checkbox"
+                  checked={selectedItems.includes(item.id)}
+                  onChange={() => handleSelectItem(item.id)}
+                />
               </td>
               <td>{item.applicant}</td>
               <td>{item.username}</td>
@@ -113,20 +195,36 @@ function EventRequestList() {
         </tbody>
       </table>
       <div className="pagination">
-        <button>&lt;</button>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>...</button>
-        <button>10</button>
-        <button>&gt;</button>
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          style={{ color: "#555555" }}
+        >
+          &lt;
+        </button>
+        {Array.from(
+          { length: endPage - startPage + 1 },
+          (_, i) => startPage + i
+        ).map((pageNumber) => (
+          <button
+            key={pageNumber}
+            onClick={() => handlePageChange(pageNumber)}
+            disabled={currentPage === pageNumber}
+            style={{ color: currentPage === pageNumber ? "#576FD7" : "#555555" }}
+          >
+            {pageNumber}
+          </button>
+        ))}
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          style={{ color: "#555555" }}
+        >
+          &gt;
+        </button>
       </div>
       {open && selectedItem && (
-        <EventModal
-          open={open}
-          handleClose={handleClose}
-          item={selectedItem}
-        />
+        <EventModal open={open} handleClose={handleClose} item={selectedItem} />
       )}
     </main>
   );
